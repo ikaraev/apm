@@ -1,0 +1,6 @@
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1685138422;s:6:"expire";i:1685142022;s:4:"tags";s:45:"69d_BLOCK_HTML,69d_CAT_C,69d_CAT_C_5,69d_MAGE";}
+
+<nav class="navigation" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <li  class="level0 nav-1 category-item first last level-top parent"><a href="http://apm.local:90/catalog.html"  class="level-top" ><span>Catalog</span></a><ul class="level0 submenu"><li  class="level1 nav-1-1 category-item first"><a href="http://apm.local:90/catalog/engine.html" ><span>Engine</span></a></li><li  class="level1 nav-1-2 category-item"><a href="http://apm.local:90/catalog/bumper.html" ><span>Bumper</span></a></li><li  class="level1 nav-1-3 category-item last"><a href="http://apm.local:90/catalog/brake.html" ><span>Brake</span></a></li></ul></li>            </ul>
+</nav>

@@ -1,0 +1,85 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php if ($block->getShowPart() == 'welcome'): ?>
+    <li class="link customer-welcome">
+        <span
+            id="account-dropdown-action"
+            class="action toggle switcher-trigger"
+            role="button"
+            tabindex="0"
+            data-mage-init='{"dropdown":{}}'
+            data-toggle="dropdown"
+            data-trigger-keypress-button="true"
+            data-bind="scope: 'account-dropdown'"
+            data-action="customer-menu-toggle">
+            <span><?= $block->escapeHtml(__('Dropdown open button')) ?></span>
+        </span>
+        <ul data-target="dropdown" class="dropdown-options">
+            <li>
+            </li>
+            <li>
+                <span class="item"><a href="#"><?= $block->escapeHtml(__('Item 2 with link')) ?></a></span>
+            </li>
+            <li>
+                <span class="item"><?= $block->escapeHtml(__('Item 3')) ?></span>
+            </li>
+        </ul>
+    </li>
+    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  -->
+<!--        <a style="background-image: url('https://cdn-icons-png.flaticon.com/128/1144/1144760.png'); background-size: 100% 100%; padding: 15px;"-->
+<!--           data-mage-init='{"dropdown":{}}'-->
+<!--           data-toggle="dropdown"-->
+<!--           class="action"-->
+<!--           data-action="customer-menu-toggle"-->
+<!--        >-->
+<!--        </a>-->
+
+        <span class="logged-in"
+              data-bind="text: new String('<?= $escaper->escapeHtml(__('Welcome 123, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+        </span>
+        <!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in"
+              data-bind="text: '<?= $escaper->escapeHtml($welcomeMessage) ?>'"></span>
+        <?= $block->getBlockHtml('header.additional') ?>
+        <!-- /ko -->
+    </li>
+    <?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<!--<script>-->
+<!--    require([-->
+<!--        'jquery',-->
+<!--        'jquery/ui',-->
+<!--        'mage/dropdown'-->
+<!--    ],function($) {-->
+<!--        $(document).ready(function() {-->
+<!--            $('#customer-action').dropdown();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<?php elseif ($block->getShowPart() == 'other'): ?>
+    <?= $block->getChildHtml() ?>
+<?php endif ?>

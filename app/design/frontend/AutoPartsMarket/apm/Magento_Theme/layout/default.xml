@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+
+    <body>
+<!--        <move name="header.panel" destination="header-wrapper" before=""/>-->
+
+<!--        <container name="header.panel.apm" label="Page Header Panel" htmlTag="div" htmlClass="customer links apm panel">-->
+<!--            <block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="target" xsi:type="string">contentarea</argument>-->
+<!--                    <argument name="label" translate="true" xsi:type="string">Skip to Content</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+<!--            <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml">-->
+<!--                <arguments>-->
+<!--                    <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+<!--            <block class="Magento\Customer\Block\Account\Navigation" name="top.links">-->
+<!--                <arguments>-->
+<!--                    <argument name="css_class" xsi:type="string">header links</argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
+<!--        </container>-->
+
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\SortLink" name="order-history-top-link" after="wish-list-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">sales/order/history</argument>
+                    <argument name="label" xsi:type="string" translate="true">Order History</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+
+        <move element="header.panel" destination="header-wrapper" after="topSearch"/>
+    </body>
+</page>
