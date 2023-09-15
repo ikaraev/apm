@@ -1,0 +1,21 @@
+{
+    "name": "iso-engineering/language-ka_ge",
+    "version": "0.0.37",
+    "type": "magento2-language",
+    "description": "ka_ge language package.",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

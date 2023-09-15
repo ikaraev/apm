@@ -4,38 +4,38 @@
     <update handle="default_head_blocks"/>
 
     <body>
-<!--        <move name="header.panel" destination="header-wrapper" before=""/>-->
 
-<!--        <container name="header.panel.apm" label="Page Header Panel" htmlTag="div" htmlClass="customer links apm panel">-->
-<!--            <block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">-->
-<!--                <arguments>-->
-<!--                    <argument name="target" xsi:type="string">contentarea</argument>-->
-<!--                    <argument name="label" translate="true" xsi:type="string">Skip to Content</argument>-->
-<!--                </arguments>-->
-<!--            </block>-->
-<!--            <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml">-->
-<!--                <arguments>-->
-<!--                    <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>-->
-<!--                </arguments>-->
-<!--            </block>-->
-<!--            <block class="Magento\Customer\Block\Account\Navigation" name="top.links">-->
-<!--                <arguments>-->
-<!--                    <argument name="css_class" xsi:type="string">header links</argument>-->
-<!--                </arguments>-->
-<!--            </block>-->
-<!--        </container>-->
+        <referenceContainer name="header-wrapper">
+            <container name="header-logo" htmlTag="div" htmlClass="header-logo">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+                    <arguments>
+                        <argument name="logoPathResolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoPathResolver</argument>
+                        <argument name="logo_size_resolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoSizeResolver</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
 
-        <referenceBlock name="top.links">
-            <block class="Magento\Customer\Block\Account\SortLink" name="order-history-top-link" after="wish-list-link">
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links" before="-">
                 <arguments>
-                    <argument name="path" xsi:type="string">sales/order/history</argument>
-                    <argument name="label" xsi:type="string" translate="true">Order History</argument>
+                    <argument name="css_class" xsi:type="string">header links</argument>
                 </arguments>
             </block>
+        </referenceContainer>
+
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Links"
+                   name="contacts-link"
+                   before="customer"
+                   template="Magento_Theme::contact/link/contact-info.phtml"/>
         </referenceBlock>
 
-        <referenceBlock name="header.panel.wrapper" remove="true"/>
 
-        <move element="header.panel" destination="header-wrapper" after="topSearch"/>
+        <referenceBlock name="copyright" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+<!--        <referenceBlock name="header.panel.wrapper" remove="true"/>-->
+
+<!--        <move element="header.panel" destination="header-wrapper" after="topSearch"/>-->
     </body>
 </page>

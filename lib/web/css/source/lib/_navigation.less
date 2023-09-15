@@ -3,6 +3,23 @@
 //  * See COPYING.txt for license details.
 //  */
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .nav-sections {
+        background: #f0f0f0;
+
+        .navigation {
+            background: #f0f0f0;
+        }
+
+        .nav-sections-item-title {
+            background: #e3e3e3;
+            border: solid #d7d7d7;
+            border-width: 0 0 1px 1px;
+        }
+    }
+}
+
 //
 //  Navigation
 //  _____________________________________________
@@ -471,7 +488,7 @@
                 li {
                     margin: 0;
                     position: relative;
-                    
+
                     &.parent {
                         > a {
                             > .ui-menu-icon {

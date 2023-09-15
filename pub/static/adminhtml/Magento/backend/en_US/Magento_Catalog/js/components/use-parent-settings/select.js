@@ -1,1 +1,0 @@
-/var/www/html/vendor/magento/module-catalog/view/adminhtml/web/js/components/use-parent-settings/select.js

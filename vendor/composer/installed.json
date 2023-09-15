@@ -1539,6 +1539,44 @@
             "install-path": "../colinmollenhour/php-redis-session-abstract"
         },
         {
+            "name": "community-engineering/language-ru_ru",
+            "version": "0.0.37",
+            "version_normalized": "0.0.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magento-l10n/language-ru_RU.git",
+                "reference": "343d8346717a23375959a0dfd6f36c955b50dfa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magento-l10n/language-ru_RU/zipball/343d8346717a23375959a0dfd6f36c955b50dfa1",
+                "reference": "343d8346717a23375959a0dfd6f36c955b50dfa1",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "time": "2023-06-23T12:54:42+00:00",
+            "type": "magento2-language",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "ru_RU language package.",
+            "support": {
+                "issues": "https://github.com/magento-l10n/language-ru_RU/issues",
+                "source": "https://github.com/magento-l10n/language-ru_RU/tree/v0.0.37"
+            },
+            "install-path": "../community-engineering/language-ru_ru"
+        },
+        {
             "name": "composer/ca-bundle",
             "version": "1.3.5",
             "version_normalized": "1.3.5.0",

@@ -1,0 +1,28 @@
+<?php
+/** @var \Apm\Catalog\ViewModel\CategoryGridBlockViewModel $viewModel */
+$viewModel = $block->getViewModel();
+
+$categories = $viewModel->getCategories();
+?>
+<div class="category-grid-title">
+    <h2><?=__('SHOP BY CATEGORIES')?></h2>
+</div>
+<div class="category-grid">
+    <?php foreach ($categories as $category): ?>
+        <div class="category-element" data-id="" data-element_type="column">
+            <div class="" data-id="" data-element_type="widget" data-widget_type="product_cat.default">
+                <div class="">
+                    <a class="category-item-img-block"
+                       href="<?=$category->getUrl()?>">
+                        <span class="category-item-img">
+                            <img decoding="async"
+                                 src="<?=$viewModel->getFullCategoryImageUrl($category->getImageUrl())?>"
+                                 alt="<?=$category->getName()?>">
+                        </span>
+                        <h5><?=$category->getName()?></h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

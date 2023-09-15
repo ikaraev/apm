@@ -256,6 +256,15 @@
             'reference' => '3df52a7247a97fb4ec5bddfb731d1a6cddb5ef99',
             'dev_requirement' => false,
         ),
+        'community-engineering/language-ru_ru' => array(
+            'pretty_version' => '0.0.37',
+            'version' => '0.0.37.0',
+            'type' => 'magento2-language',
+            'install_path' => __DIR__ . '/../community-engineering/language-ru_ru',
+            'aliases' => array(),
+            'reference' => '343d8346717a23375959a0dfd6f36c955b50dfa1',
+            'dev_requirement' => false,
+        ),
         'components/jquery' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -4502,8 +4511,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
                 2 => '1.0|2.0|3.0',
             ),
         ),

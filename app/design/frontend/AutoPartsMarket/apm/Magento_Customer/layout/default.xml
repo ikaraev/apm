@@ -4,6 +4,22 @@
     <update handle="default_head_blocks"/>
 
     <body>
-        <referenceBlock name="my-account-link" remove="true"/>
+        <referenceBlock name="header.links">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer" template="Magento_Customer::account/customer.phtml" before="-"/>
+        </referenceBlock>
+
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\Link" name="my-account-link" template="Magento_Customer::account/link/my-account.phtml">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                    <argument name="sortOrder" xsi:type="number">110</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <move element="top.links" destination="customer"/>
+
+        <referenceBlock name="header" remove="true"/>
+<!--        <referenceBlock name="my-account-link" remove="true"/>-->
     </body>
 </page>

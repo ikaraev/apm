@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var \Magento\Customer\Block\Account\Link $block
+ * @var \Magento\Framework\Escaper $escaper
+ */?>
+<li data-bind="scope: 'customer'">
+    <div data-bind="if: customer().fullname, style: {display: customer().fullname ? 'block' : 'none'}">
+        <a <?= /* @noEscape */ $block->getLinkAttributes() ?>><?= $escaper->escapeHtml($block->getLabel()) ?></a>
+    </div>
+</li>

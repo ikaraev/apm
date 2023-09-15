@@ -1,4 +1,4 @@
-a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1685138421;s:6:"expire";i:1716674421;s:4:"tags";s:37:"69d_LAYOUT_GENERAL_CACHE_TAG,69d_MAGE";}
+a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1694191572;s:6:"expire";i:1725727572;s:4:"tags";s:37:"69d_LAYOUT_GENERAL_CACHE_TAG,69d_MAGE";}
 <?xml version="1.0"?>
 <layouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><handle id="catalog_category_view"><body/>
 </handle><handle id="catalogsearch_advanced_index"><body/>
@@ -6920,6 +6920,68 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1685138421;s:6:"expire";i:1716674421;s:4:"t
       <block class="Magento\Wishlist\Block\Share\Wishlist" name="customer.wishlist" template="Magento_Wishlist::shared.phtml" cacheable="false"/>
    </referenceContainer>
 </body>
+</handle><handle id="attributesearch_search_view" layout="2columns-left"><body>
+   <referenceContainer name="columns.top">
+      <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
+         <block class="Magento\Catalog\Block\Category\View" name="category.image" template="Magento_Catalog::category/image.phtml">
+            <arguments>
+               <argument name="image" xsi:type="object">Magento\Catalog\ViewModel\Category\Image</argument>
+               <argument name="output" xsi:type="object">Magento\Catalog\ViewModel\Category\Output</argument>
+            </arguments>
+         </block>
+         <block class="Magento\Catalog\Block\Category\View" name="category.description" template="Magento_Catalog::category/description.phtml"/>
+         <block class="Magento\Catalog\Block\Category\View" name="category.cms" template="Magento_Catalog::category/cms.phtml"/>
+      </container>
+   </referenceContainer>
+   <referenceContainer name="sidebar.main">
+      <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+         <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state"/>
+         <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml">
+            <arguments>
+               <argument name="product_layer_view_model" xsi:type="object">Magento\LayeredNavigation\ViewModel\Layer\Filter</argument>
+            </arguments>
+         </block>
+      </block>
+   </referenceContainer>
+   <referenceContainer name="content">
+      <block class="Magento\Catalog\Block\Category\View" name="category.products" template="Magento_Catalog::category/products.phtml">
+         <block class="Magento\Catalog\Block\Product\ListProduct" name="category.products.list" as="product_list" template="Magento_Catalog::product/list.phtml">
+            <container name="category.product.list.additional" as="additional"/>
+            <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+               <block class="Magento\Framework\View\Element\Template" name="category.product.type.details.renderers.default" as="default"/>
+            </block>
+            <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">
+               <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare" name="category.product.addto.compare" as="compare" template="Magento_Catalog::product/list/addto/compare.phtml"/>
+            </block>
+            <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+               <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+            </block>
+            <action method="setToolbarBlockName">
+               <argument name="name" xsi:type="string">product_list_toolbar</argument>
+            </action>
+         </block>
+      </block>
+      <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
+         <arguments>
+            <argument name="triggers" xsi:type="array">
+               <item name="compareProductLink" xsi:type="string">.action.tocompare</item>
+            </argument>
+         </arguments>
+      </block>
+   </referenceContainer>
+   <referenceBlock name="page.main.title">
+      <arguments>
+         <argument name="id" xsi:type="string">page-title-heading</argument>
+         <argument name="add_base_attribute_aria" xsi:type="string">page-title-heading toolbar-amount</argument>
+      </arguments>
+      <block class="Magento\Catalog\Block\Category\Rss\Link" name="rss.link" template="Magento_Catalog::category/rss.phtml"/>
+   </referenceBlock>
+   <referenceBlock name="category.products.list">
+      <arguments>
+         <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+      </arguments>
+   </referenceBlock>
+</body>
 </handle><handle id="braintree_googlepay_review" layout="1column"><head>
    <title>Review Order</title>
 </head>
@@ -7130,25 +7192,89 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1685138421;s:6:"expire";i:1716674421;s:4:"t
 </body>
 </handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
 <body>
-   <referenceBlock name="top.links">
-      <block class="Magento\Customer\Block\Account\SortLink" name="order-history-top-link" after="wish-list-link">
+   <referenceContainer name="header-wrapper">
+      <container name="header-logo" htmlTag="div" htmlClass="header-logo">
+         <block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+            <arguments>
+               <argument name="logoPathResolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoPathResolver</argument>
+               <argument name="logo_size_resolver" xsi:type="object">Magento\Theme\ViewModel\Block\Html\Header\LogoSizeResolver</argument>
+            </arguments>
+         </block>
+      </container>
+   </referenceContainer>
+   <referenceContainer name="header.panel">
+      <block class="Magento\Framework\View\Element\Html\Links" name="header.links" before="-">
          <arguments>
-            <argument name="path" xsi:type="string">sales/order/history</argument>
-            <argument name="label" translate="true" xsi:type="string">Order History</argument>
+            <argument name="css_class" xsi:type="string">header links</argument>
+         </arguments>
+      </block>
+   </referenceContainer>
+   <referenceBlock name="header.links">
+      <block class="Magento\Framework\View\Element\Html\Links" name="contacts-link" before="customer" template="Magento_Theme::contact/link/contact-info.phtml"/>
+   </referenceBlock>
+   <referenceBlock name="copyright" remove="true"/>
+   <referenceBlock name="report.bugs" remove="true"/>
+</body>
+</handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
+<body>
+   <referenceBlock name="header.links">
+      <block class="Magento\Customer\Block\Account\Customer" name="customer" template="Magento_Customer::account/customer.phtml" before="-"/>
+   </referenceBlock>
+   <referenceBlock name="top.links">
+      <block class="Magento\Customer\Block\Account\Link" name="my-account-link" template="Magento_Customer::account/link/my-account.phtml">
+         <arguments>
+            <argument name="label" translate="true" xsi:type="string">My Account</argument>
+            <argument name="sortOrder" xsi:type="number">110</argument>
          </arguments>
       </block>
    </referenceBlock>
-   <referenceBlock name="header.panel.wrapper" remove="true"/>
-   <move element="header.panel" destination="header-wrapper" after="topSearch"/>
+   <move element="top.links" destination="customer"/>
+   <referenceBlock name="header" remove="true"/>
+</body>
+</handle><handle id="cms_index_index" layout="3columns"><body>
+   <referenceContainer name="page.wrapper">
+      <container name="full.screen.content" htmlTag="div" htmlId="full-screen-content" htmlClass="full-screen-content block-full" before="main.content">
+         <block name="attribute.search" template="Magento_Theme::search/attribute-search.phtml">
+            <arguments>
+               <argument name="view_model" xsi:type="object">Apm\AttributeSearch\ViewModel\AttributeSearchViewModel</argument>
+            </arguments>
+         </block>
+      </container>
+      <referenceContainer name="main.content">
+         <container name="category.banner.section" htmlTag="section">
+            <block name="category.banner.block" template="Magento_Theme::category/category-banner.phtml">
+               <arguments>
+                  <argument name="view_model" xsi:type="object">Apm\Catalog\ViewModel\CategoryGridBlockViewModel</argument>
+               </arguments>
+            </block>
+         </container>
+         <container name="categories.grid.section" htmlTag="section">
+            <block name="categories.grid.block" template="Magento_Theme::category/categories-grid-block.phtml">
+               <arguments>
+                  <argument name="view_model" xsi:type="object">Apm\Catalog\ViewModel\CategoryGridBlockViewModel</argument>
+               </arguments>
+            </block>
+         </container>
+      </referenceContainer>
+   </referenceContainer>
+   <referenceBlock name="main" remove="true"/>
 </body>
 </handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
 <body>
-   <referenceBlock name="my-account-link" remove="true"/>
+   <referenceContainer name="header-wrapper">
+      <container name="header-search" htmlTag="div" htmlClass="header-search">
+         <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml">
+            <arguments>
+               <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+               <argument name="additionalSearchFormData" xsi:type="object">Magento\Search\ViewModel\AdditionalSearchFormData</argument>
+            </arguments>
+         </block>
+      </container>
+   </referenceContainer>
 </body>
-</handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
-<body>
-
-    </body>
+</handle><handle id="catalog_category_view" layout="2columns-left"><referenceBlock name="compare" remove="true"/>
+</handle><handle id="catalog_product_view" layout="1column"><referenceBlock name="view.addto.compare" remove="true"/>
+<referenceBlock name="compare" remove="true"/>
 </handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
 <body>
    <referenceBlock name="catalog.compare.link" remove="true"/>
@@ -7156,6 +7282,57 @@ a:4:{s:4:"hash";s:0:"";s:5:"mtime";i:1685138421;s:6:"expire";i:1716674421;s:4:"t
 </handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
 <body>
    <referenceBlock name="advanced-search-link" remove="true"/>
+</body>
+</handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
+<body>
+   <referenceContainer name="header-wrapper">
+      <container name="header-minicart" htmlTag="div" htmlClass="header-minicart" before="header-search">
+         <block class="Magento\Checkout\Block\Cart\Sidebar" name="minicart" as="minicart" after="contact.block" template="Magento_Checkout::cart/minicart.phtml">
+            <arguments>
+               <argument name="jsLayout" xsi:type="array">
+                  <item name="types" xsi:type="array"/>
+                  <item name="components" xsi:type="array">
+                     <item name="minicart_content" xsi:type="array">
+                        <item name="component" xsi:type="string">Magento_Checkout/js/view/minicart</item>
+                        <item name="config" xsi:type="array">
+                           <item name="template" xsi:type="string">Magento_Checkout/minicart/content</item>
+                        </item>
+                        <item name="children" xsi:type="array">
+                           <item name="subtotal.container" xsi:type="array">
+                              <item name="component" xsi:type="string">uiComponent</item>
+                              <item name="config" xsi:type="array">
+                                 <item name="displayArea" xsi:type="string">subtotalContainer</item>
+                              </item>
+                              <item name="children" xsi:type="array">
+                                 <item name="subtotal" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="config" xsi:type="array">
+                                       <item name="template" xsi:type="string">Magento_Checkout/minicart/subtotal</item>
+                                    </item>
+                                 </item>
+                              </item>
+                           </item>
+                           <item name="extra_info" xsi:type="array">
+                              <item name="component" xsi:type="string">uiComponent</item>
+                              <item name="config" xsi:type="array">
+                                 <item name="displayArea" xsi:type="string">extraInfo</item>
+                              </item>
+                           </item>
+                           <item name="promotion" xsi:type="array">
+                              <item name="component" xsi:type="string">uiComponent</item>
+                              <item name="config" xsi:type="array">
+                                 <item name="displayArea" xsi:type="string">promotion</item>
+                              </item>
+                           </item>
+                        </item>
+                     </item>
+                  </item>
+               </argument>
+            </arguments>
+            <container name="minicart.addons" label="Mini-cart promotion block"/>
+         </block>
+      </container>
+   </referenceContainer>
 </body>
 </handle><handle id="default" layout="3columns"><update handle="default_head_blocks"/>
 <body>

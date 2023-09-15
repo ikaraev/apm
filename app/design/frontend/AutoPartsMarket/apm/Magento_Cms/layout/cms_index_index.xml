@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="3columns" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<!--    <head>-->
+<!--        <css src="Magento_Theme::css/select/select2.min.css"/>-->
+<!--    </head>-->
+    <body>
+        <referenceContainer name="page.wrapper">
+            <container name="full.screen.content" htmlTag="div" htmlId="full-screen-content" htmlClass="full-screen-content block-full" before="main.content">
+                <block name="attribute.search" template="Magento_Theme::search/attribute-search.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">Apm\AttributeSearch\ViewModel\AttributeSearchViewModel</argument>
+                    </arguments>
+                </block>
+            </container>
+            <referenceContainer name="main.content">
+                <container name="category.banner.section" htmlTag="section">
+                    <block name="category.banner.block" template="Magento_Theme::category/category-banner.phtml">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">Apm\Catalog\ViewModel\CategoryGridBlockViewModel</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="categories.grid.section" htmlTag="section">
+                    <block name="categories.grid.block" template="Magento_Theme::category/categories-grid-block.phtml">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">Apm\Catalog\ViewModel\CategoryGridBlockViewModel</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </referenceContainer>
+        </referenceContainer>
+
+        <referenceBlock name="main" remove="true"/>
+    </body>
+</page>
