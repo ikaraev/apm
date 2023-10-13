@@ -1,0 +1,147 @@
+<?php
+/** @var \Apm\AttributeSearch\ViewModel\AttributeSearchViewModel $viewModel */
+$viewModel = $block->getViewModel();
+$attr = $viewModel->getAttributeSearchBlock();
+?>
+
+<div class="container">
+    <div id="loader-search-attr-block" data-mage-init='{"loader": { "icon": "<?= $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"}}'>
+    </div>
+    <div class="attr-container">
+        <div class="text-container">
+            <h1>MARNEULI MARKET</h1>
+            <p>Any parts in a few clicks</p>
+        </div>
+        <div class="attr-search-wrapper">
+            <div class="search-title">
+                <p><?=__('SELECT YOUR VEHICLE')?></p>
+            </div>
+            <form class="attr-search-from">
+                <div class="attr-group">
+                    <?php foreach ($attr as $attribute): ?>
+
+                        <div class="attr-select-block">
+                            <select
+                                class="control-select"
+                                name="<?=$attribute['attribute_code']?>"
+                                id="attribute-<?=$attribute['attribute_code']?>"
+                            >
+                                <option value=""><?=$attribute['title']?></option>
+                                <?php if(isset($attribute['options'])):?>
+                                    <?php foreach ($attribute['options'] as $option):?>
+                                        <?php if(!$option['value']):?>
+                                            <?php continue;?>
+                                        <?php endif;?>
+                                        <option value="<?=$option['value']?>"><?=$option['label'];?></option>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                            </select>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+                <div class="attr-btn-search">
+                    <div class="attr-btn">
+                        <div class="attr-inner cf">
+                            <button class="btn btn-search" id="attr-search-btn" type="button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'loader', 'dropdownSearchSelector', 'domReady!'], function ($) {
+        'use strict';
+
+        $(function () {
+
+            var selects = $('.control-select')
+
+            selects.select2({})
+
+            selects.on("select2:select", function (e) {
+                let currentTarget = e.currentTarget,
+                    form = $(e.currentTarget).closest('form'),
+                    select = this,
+                    selectLoad = null,
+                    params = {};
+
+                for (var i = 0; i < selects.length; i++) {
+                    if (selects[i].id == select.id && i != selects.length - 1) {
+                        selectLoad = selects[i + 1];
+                        break;
+                    }
+                }
+
+                let formSerialized = form.serializeArray();
+
+                for (var i = 0; i < formSerialized.length; i++) {
+                    if (formSerialized[i].value) {
+                        params[formSerialized[i].name] = formSerialized[i].value
+                    }
+                }
+
+                let url = "<?=$block->getUrl('attributesearch/search/index')?>",
+                    _selectLoad = $(selectLoad)
+
+                params.search_attr_code = _selectLoad.attr('name')
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    onload: $('#loader-search-attr-block').trigger('processStart'),
+                    dataType:"json",
+                    data: params,
+                    success: function (data, status, xhr) {
+                        let option = data.content;
+
+                        clearSelectOptions(currentTarget, _selectLoad)
+
+                        _selectLoad.append(option).trigger('change');
+
+                        $('#loader-search-attr-block').trigger('processStop');
+                    },
+                    error: function (jqXhr, textStatus, errorMessage) { // error callback
+                        debugger// success callback function
+                        console.log('error')
+                        $('#loader-search-attr-block').trigger('processStop');
+                    }
+                })
+            });
+
+
+            function clearSelectOptions(select, _selectLoad) {
+                debugger
+                let startClear = false;
+                for (var i = 0; i < selects.length; i++) {
+                    let currentSelect = $(selects[i]);
+
+                    if (startClear) {
+                        // currentSelect.attr("disabled", "disabled");
+
+                        if (_selectLoad.attr('name') === currentSelect.attr('name')) {
+                            currentSelect.children('option').remove();
+                        } else {
+                            currentSelect.children('option:not(:first)').remove();
+                        }
+                    }
+
+                    if (currentSelect.attr('name') === select.name) {
+                        startClear = true;
+                    }
+                }
+            }
+
+
+            $('#attr-search-btn').click(function (e) {
+                let currentTarget = e.currentTarget,
+                    form = $(currentTarget).closest('form'),
+                    formSerialized = form.serialize();
+
+                window.location = "<?=trim($block->getUrl('attributesearch/search/view'), '/')?>?" + formSerialized
+            })
+        });
+    });
+</script>

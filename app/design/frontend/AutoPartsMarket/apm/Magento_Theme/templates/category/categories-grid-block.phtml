@@ -7,7 +7,7 @@ $categories = $viewModel->getCategories();
 <div class="category-grid-title">
     <h2><?=__('SHOP BY CATEGORIES')?></h2>
 </div>
-<div class="category-grid">
+<div class="category-grid owl-carousel owl-theme">
     <?php foreach ($categories as $category): ?>
         <div class="category-element" data-id="" data-element_type="column">
             <div class="" data-id="" data-element_type="widget" data-widget_type="product_cat.default">
@@ -26,3 +26,31 @@ $categories = $viewModel->getCategories();
         </div>
     <?php endforeach; ?>
 </div>
+
+<script type="text/javascript">
+    require(['jquery', 'loader', 'owlcarousel', 'domReady!'], function ($) {
+        'use strict';
+
+        $(function () {
+
+            $('.category-grid').owlCarousel({
+                loop:true,
+                margin:10,
+                dots:false,
+                nav:true,
+                lazyLoad:true,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
+        });
+    });
+</script>

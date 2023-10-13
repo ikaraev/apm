@@ -2,12 +2,12 @@ var config = {
     map: {
         '*': {
 
-            dropdownSearchSelector:  'Magento_Theme/js/select/select2.min'
+            owlcarousel:  'Apm_Carousel/js/lib/owl/owl.carousel.min'
 
         }
     },
     shim: {
-        'dropdownSearchSelector': {
+        'owlcarousel': {
             deps: ['jquery']
         }
     },

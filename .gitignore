@@ -23,3 +23,6 @@
 !/update/.htaccess
 !/README.md
 !/op-exclude.txt
+!/docker/
+!/docker-compose.yaml.template
+!/.env.template

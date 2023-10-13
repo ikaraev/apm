@@ -1,0 +1,71 @@
+<div class="main-suggestions-block">
+    <div class="wrapper-suggestions-block">
+        <div class="suggestions-block-message">
+            <span><?=__('Everything is here')?></span>
+            <h2>
+                <?=__('We provide services')?>
+            </h2>
+        </div>
+        <div class="suggestions-carousel-block">
+            <div class="suggestion-carousel-item owl-carousel owl-theme">
+
+                <div class="suggestion-item-image">
+                    <a class="suggestion-item-photo">
+                        <img class="suggestion-image-photo" src="https://wpbingosite.com/wordpress/bumbleb/wp-content/uploads/2022/09/brand-3.png">
+                    </a>
+                </div>
+
+                <div class="suggestion-item-image">
+                    <a class="suggestion-item-photo">
+                        <img class="suggestion-image-photo" src="https://wpbingosite.com/wordpress/bumbleb/wp-content/uploads/2022/09/brand-4.png">
+                    </a>
+                </div>
+
+                <div class="suggestion-item-image">
+                    <a class="suggestion-item-photo">
+                        <img class="suggestion-image-photo" src="https://wpbingosite.com/wordpress/bumbleb/wp-content/uploads/2022/09/brand.png">
+                    </a>
+                </div>
+
+                <div class="suggestion-item-image">
+                    <a class="suggestion-item-photo">
+                        <img class="suggestion-image-photo" src="https://wpbingosite.com/wordpress/bumbleb/wp-content/uploads/2022/09/brand-2.png">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    require(['jquery', 'loader', 'owlcarousel', 'domReady!'], function ($) {
+        'use strict';
+
+        $(function () {
+
+            $('.suggestion-carousel-item').owlCarousel({
+                loop:true,
+                margin:10,
+                dots:false,
+                nav:false,
+                autoplay:true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause:true,
+                lazyLoad: true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
+            })
+        });
+    });
+</script>

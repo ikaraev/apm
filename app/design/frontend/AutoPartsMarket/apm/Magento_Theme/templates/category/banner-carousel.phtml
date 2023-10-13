@@ -1,0 +1,67 @@
+<?php
+
+/** @var \Apm\Carousel\ViewModel\CarouselItemViewModel $viewModel */
+$viewModel = $block->getViewModel();
+$items = $viewModel->getCategoryItems();
+?>
+
+<div class="section-block-title">
+    <strong><?=__('Broken cars')?> </br> <?=__('cars for dismantling')?></strong>
+    <p><?=__('View all')?></p>
+</div>
+<div class="multiple-items owl-carousel owl-theme">
+    <?php foreach ($items->getItems() as $item): ?>
+        <div class="item-row">
+            <div class="vehicle-item-block">
+                <div class="vehicle-item-info">
+                    <div class="image-vehicle">
+                        <a href="<?=$item->getUrlKey()?>" class="vehicle-item-photo" tabindex="0">
+                                <span class="vehicle-item-img">
+                                    <span class="vehicle-image-wrapper">
+                                        <img class="vehicle-image-photo" src="<?=$viewModel->getFullImgUrl($item)?>"
+                                             loading="lazy"
+                                             alt="<?=$item->getName()?>">
+                                    </span>
+                                </span>
+                        </a>
+                    </div>
+                    <div class="vehicle-item-details">
+                        <strong class="vehicle-item-name">
+                            <a href="<?=$item->getUrlKey()?>" title="<?=$item->getName()?>" class="vehicle-item-link" tabindex="0">
+                                <?=$item->getName()?>
+                            </a>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'loader', 'owlcarousel', 'domReady!'], function ($) {
+        'use strict';
+
+        $(function () {
+
+            $('.multiple-items').owlCarousel({
+                loop:true,
+                margin:10,
+                dots:false,
+                nav:true,
+                lazyLoad: true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            })
+        });
+    });
+</script>
