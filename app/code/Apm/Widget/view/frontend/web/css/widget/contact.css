@@ -1,0 +1,64 @@
+.widget-button-contacts {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 99999999;
+}
+
+.widget-button-contacts .widget-contacts-block {
+    display: block;
+    transition: all 80ms ease-out;
+    opacity: 0;
+}
+
+.widget-button-contacts .widget-contacts-block .widget-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact .contact {
+    padding: 20px;
+    border-radius: 100%;
+    background: #cbd5dd;
+    display: inline-flex;
+}
+
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact .contact.WhatsApp{
+    background: #7dc664;
+}
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact .contact.Telegram{
+    background: #53a3db;
+}
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact .contact.Viber{
+    background: #8074d6;
+}
+
+.widget-button-contacts .widget-contacts-block .widget-contact-list .widget-contact .contact svg {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+}
+
+.widget-button-contacts .widget-icon-block .widget-border-block {
+    padding: 20px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px 0px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all 90ms ease-out;
+    display: inline-flex;
+}
+
+.widget-button-contacts .widget-icon-block .widget-border-block:hover {
+    background-color: #dadada;
+}
+
+.widget-button-contacts .widget-icon-block .widget-border-block svg {
+    width: 32px;
+}

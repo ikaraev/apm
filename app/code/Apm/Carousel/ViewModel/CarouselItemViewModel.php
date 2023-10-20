@@ -42,8 +42,6 @@ class CarouselItemViewModel extends Template implements ArgumentInterface
 
     public function getFullImgUrl($product)
     {
-//        $default = $this->imageHelper->getDefaultPlaceholderUrl('image');
-
         $imageUrl = $this->imageHelper->init($product, 'product_page_image_large')->getUrl();
 
         return $imageUrl;

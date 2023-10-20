@@ -331,6 +331,7 @@ return [
         'Apm_Carousel' => 1,
         'Apm_Catalog' => 1,
         'Apm_Store' => 1,
+        'Apm_Widget' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Temando_ShippingRemover' => 1

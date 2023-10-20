@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="apm" translate="label" sortOrder="350">
+            <label>APM</label>
+        </tab>
+        <section id="apm_widget" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>Widgets</label>
+            <tab>apm</tab>
+            <resource>Apm_Widget::config</resource>
+
+            <group id="contacts" translate="label" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>Contacts</label>
+                <field id="whats_app" type="text"  translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Whats App Contact</label>
+                </field>
+                <field id="telegram" type="text"  translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Whats App Telegram</label>
+                </field>
+                <field id="viber" type="text"  translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Whats App Viber</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

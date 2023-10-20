@@ -26,3 +26,5 @@
 !/docker/
 !/docker-compose.yaml.template
 !/.env.template
+.idea
+var

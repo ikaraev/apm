@@ -15,7 +15,7 @@ $items = $viewModel->getCategoryItems();
             <div class="vehicle-item-block">
                 <div class="vehicle-item-info">
                     <div class="image-vehicle">
-                        <a href="<?=$item->getUrlKey()?>" class="vehicle-item-photo" tabindex="0">
+                        <a href="<?=$item->getProductUrl()?>" class="vehicle-item-photo" tabindex="0">
                                 <span class="vehicle-item-img">
                                     <span class="vehicle-image-wrapper">
                                         <img class="vehicle-image-photo" src="<?=$viewModel->getFullImgUrl($item)?>"
@@ -27,7 +27,7 @@ $items = $viewModel->getCategoryItems();
                     </div>
                     <div class="vehicle-item-details">
                         <strong class="vehicle-item-name">
-                            <a href="<?=$item->getUrlKey()?>" title="<?=$item->getName()?>" class="vehicle-item-link" tabindex="0">
+                            <a href="<?=$item->getProductUrl()?>" title="<?=$item->getName()?>" class="vehicle-item-link" tabindex="0">
                                 <?=$item->getName()?>
                             </a>
                         </strong>

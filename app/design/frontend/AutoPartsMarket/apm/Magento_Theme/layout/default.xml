@@ -24,12 +24,23 @@
             </block>
         </referenceContainer>
 
-        <referenceBlock name="header.links">
-            <block class="Magento\Framework\View\Element\Html\Links"
-                   name="contacts-link"
-                   before="customer"
-                   template="Magento_Theme::contact/link/contact-info.phtml"/>
-        </referenceBlock>
+<!--        <referenceContainer name="page.wrapper">-->
+<!--            <referenceContainer name="main.content">-->
+
+<!--                <block name="widget.contacts" template="Magento_Theme::contact/widget-contacts.phtml">-->
+<!--                    <arguments>-->
+<!--                        <argument name="view_model" xsi:type="object">Apm\AttributeSearch\ViewModel\AttributeSearchViewModel</argument>-->
+<!--                    </arguments>-->
+<!--                </block>-->
+<!--            </referenceContainer>-->
+<!--        </referenceContainer>-->
+
+        <!--        <referenceBlock name="header.links">-->
+<!--            <block class="Magento\Framework\View\Element\Html\Links"-->
+<!--                   name="contacts-link"-->
+<!--                   before="customer"-->
+<!--                   template="Magento_Theme::contact/link/contact-info.phtml"/>-->
+<!--        </referenceBlock>-->
 
 
         <referenceBlock name="copyright" remove="true"/>
